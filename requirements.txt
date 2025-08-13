@@ -1,3 +1,3 @@
 languageFreeAcq~=0.0.7
-typing_extensions~=4.12.2
-ortools~=9.11.4210
+typing_extensions~=4.14.1
+ortools~=9.14.6206

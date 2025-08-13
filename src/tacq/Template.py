@@ -4,7 +4,7 @@ import math
 
 from typing_extensions import Optional
 
-from src.tacq.Relation import Language, Relation
+from .Relation import Language, Relation
 
 
 class Characteristic:

@@ -2,8 +2,8 @@ from typing import Dict, List, Optional, Tuple
 
 from languageFreeAcq import CspScopesRelations
 
-from src.tacq.Relation import Relation
-from src.tacq.Template import Template
+from .Relation import Relation
+from .Template import Template
 
 
 class CSP:

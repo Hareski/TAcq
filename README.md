@@ -29,7 +29,7 @@ Then, you can use it in your code as follows:
 from tacq import TemplateAcquisition
 
 ta = TemplateAcquisition()
-ta.learn("examtimetabling_2.csv", 300, 1000)
+ta.learn_from_file("examtimetabling_2.csv", 300, 1000)
 print(ta.get_network())
 print(ta.get_template())
 ```

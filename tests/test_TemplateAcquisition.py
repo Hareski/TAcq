@@ -1,4 +1,5 @@
 from unittest import TestCase
+from pathlib import Path
 
 from src.tacq import Relation
 from src.tacq.CSP import file_to_examples
@@ -9,9 +10,10 @@ class TestTemplateAcquisition(TestCase):
         from src.tacq.TemplateAcquisition import TemplateAcquisition
         tacq = TemplateAcquisition()
         # Try to find the file in ../ and then in ./
-        if not (file_train := "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"):
+        if Path("./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv").exists():
             file_train = "./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"
-        self.assertTrue(file_train, "The training file was not found.")
+        file_train = "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"
+        self.assertTrue(Path(file_train).exists())
         csp = tacq.learn_from_file(file_train=file_train, max_examples=1000, timeout=None, verbose=True, max_cpu=1)
         self.assertIsNotNone(csp)
         self.assertIsNotNone(tacq.get_network())
@@ -52,12 +54,14 @@ class TestTemplateAcquisition(TestCase):
     def test_learn_from_file_accuracy(self):
         from src.tacq.TemplateAcquisition import TemplateAcquisition
         tacq = TemplateAcquisition()
-        if not (file_train := "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"):
+        if Path("./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv").exists():
             file_train = "./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"
-        self.assertTrue(file_train, "The training file was not found.")
-        if not (file_test := "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_test.csv"):
-            file_test = "./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_test.csv"
-        self.assertTrue(file_test, "The training file was not found.")
+        file_train = "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_train.csv"
+        self.assertTrue(Path(file_train).exists())
+        if Path("./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_test.csv").exists():
+            file_train = "./data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_test.csv"
+        file_train = "../data/examtimetabling/examtimetabling_4s-3cps-3days-2slots-2r_test.csv"
+        self.assertTrue(Path(file_train).exists())
         tacq.learn_from_file(file_train=file_train, max_examples=300, timeout=None, verbose=True, max_cpu=1)
         self.assertEqual(tacq.get_baseline_network().accuracy(file_to_examples(file_test)), 0.9704)
         self.assertEqual(tacq.get_network().accuracy(file_to_examples(file_test)), 1.0,

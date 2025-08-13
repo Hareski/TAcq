@@ -19,7 +19,7 @@ if __name__ == "__main__":
             param_verbose = False
         param_max_cpu = int(sys.argv[5]) # Maximum number of CPU cores to use
         ta = TemplateAcquisition()
-        ta.learn(param_examples_file, param_nb_examples, param_timeout_solver, param_verbose, param_max_cpu)
+        ta.learn_from_file(param_examples_file, param_nb_examples, param_timeout_solver, param_verbose, param_max_cpu)
         print("=== Learned Network ===")
         print(ta.get_network())
         print("=== Learned Template ===")
